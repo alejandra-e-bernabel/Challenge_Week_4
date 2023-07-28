@@ -4,8 +4,9 @@ var scoreEl = document.querySelector(".scoreKeeper");
 var questionEl = document.getElementById("questionBody");
 var startButton = document.getElementById("startButton");
 var restartButton = document.getElementById("restartButton");
+var headerRestart = document.getElementById("headerRestart");
 
-
+//headerRestart.style.color = "white";
 
 //makes the timer invisible before starting the quiz
 timerEl.style.display = "none";
@@ -42,6 +43,10 @@ restartButton.addEventListener("click", function buttonPress() {
     resetQuiz();
 })
 
+
+headerRestart.addEventListener("click",function buttonPress(){
+    resetQuiz();
+});
 
 
 //function keeps track of time left in the quiz.

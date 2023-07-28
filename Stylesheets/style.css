@@ -6,8 +6,8 @@
 
 body {
     background-color:black;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    
+    /* font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; */
+    font-family: 'Courier New', Courier, monospace
 }
 
 .header {
@@ -40,6 +40,8 @@ body {
     color:chartreuse;
     padding: 50px;
     margin: 40px;
+    margin-top: 10px;
+    margin-bottom: 0;
 
     border: 10px solid;
     border-color: chartreuse;
@@ -73,4 +75,8 @@ form {
 
     color: chartreuse;
     
+}
+
+.headerRestart {
+    cursor: pointer;
 }
