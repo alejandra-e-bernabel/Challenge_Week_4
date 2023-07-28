@@ -1,42 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Javascript Quiz</title>
-
-     <!-- Resetting style and adding my own stylsheet -->
-     <link rel="Reset styles" href="./reset.css">
-     <link rel="Stylesheet" href="./style.css">
-</head>
-
-
-<body>  
-    <header class="header">
-        <h1>JavaScript Quiz</h1>
-
-        <nav>
-            <ul>
-                <li>
-                    Reset Quiz
-                </li>
-
-                <li>
-                    View High Scores
-                </li>
-
-                <li>
-                    Clear High Scores
-                </li>
-            </ul>
-        </nav>
-    </header>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Javascript Quiz</title>
+    
+         <!-- Resetting style and adding my own stylsheet -->
+         <link rel="Reset styles" href="./Stylesheets/reset.css">
+         
+        <!-- adding bootstrap stylesheet -->
+         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
+         <!-- adding my own stylesheet -->
+         <link rel="Stylesheet" href="./Stylesheets/style.css">
+    </head>
 
 
-    <h2 class="timer" style="text-align:right;">Hello</h2>
-    <div id="main"></div>
-
-    <script src="./script.js"></script>
-</body>
+    <body>  
+        <header class="header">
+            <h1>JavaScript Quiz</h1>
+    
+            <nav>
+                <ul>
+                    <li>
+                        Reset Quiz
+                    </li>
+    
+                    <li>
+                        View High Scores
+                    </li>
+    
+                    <li>
+                        Clear High Scores
+                    </li>
+                </ul>
+            </nav>
+        </header>
+    
+        <div class="questionBox"> 
+            <h2 class="timer" style="text-align:right;">Timer Placeholder Text</h2>
+            <div class="main" id="questionBody">
+                <h1>Welcome to the JavaScript Quiz!</h1>
+                <br><br>
+                <h2>Instructions</h2>
+                <p>When ready, click the "start" button. A timer will begin counting down.
+                    <br><br>
+                    With each correct question, your score increases. With each incorrect questoin, your time will be reduced!
+                    <br><br>
+                    If you finish all questions before the time runs out, your remaining time will be added to your score!
+                    <br><br>
+                    Good luck!
+                    <br><br>
+                </p>
+            </div>
+            <button id= "startButton" type="button" class="btn btn-outline-dark">Begin Quiz</button>
+        </div>
+    
+    
+        <script src="./script.js"></script>
+    </body>
 </html>

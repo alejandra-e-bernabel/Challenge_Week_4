@@ -5,7 +5,7 @@
 }
 
 body {
-    background-color:lavenderblush;
+    background-color:black;
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     
 }
@@ -13,10 +13,14 @@ body {
 .header {
     display:flex;
     background-color: black;
-    color: lavenderblush;
+    color:chartreuse;
 
     padding: 30px;
     justify-content: space-between;
+}
+
+.header h1 {
+    color:chartreuse;
 }
 
 .header ul {
@@ -29,3 +33,18 @@ body {
     padding-left: 40px;
     font-size: large;
 }
+
+.timer {
+    color: chartreuse;
+}
+
+.questionBox {
+    background-color: seashell;
+    padding: 50px;
+    margin: 40px;
+}
+
+
+.main {
+    text-align: center;
+} 
