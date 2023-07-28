@@ -31,6 +31,8 @@ function setTime() {
     var timerInterval = setInterval(function() {
         secondsLeft--;
         timerEl.textContent = "Time: " + secondsLeft;
+
+        timeCheck();
         
         if (secondsLeft == 0) {
             clearInterval(timerInterval);
@@ -97,8 +99,7 @@ function checkQuestion1 () {
     
     else {
         secondsLeft-=10;
-        if (secondsLeft <=0)
-            i=100;
+        
     }
 }
 
@@ -108,8 +109,7 @@ function checkQuestion2 () {
     
     else {
         secondsLeft-=10;
-        if (secondsLeft <=0)
-            i=100;
+        
         }
 }
 
@@ -119,7 +119,19 @@ function checkQuestion3 () {
     
     else {
         secondsLeft-=10;
-        if (secondsLeft <=0)
-            i=100;
+        
         }
+}
+
+function timeCheck () {
+    if (secondsLeft == 0) {
+        timerEl.style.display="none";
+        
+        questionEl.textContent = "Your final score is " + (quizScore+secondsLeft);
+        question1.style.display = "none";
+        question1.style.display = "none";
+        question3.style.display = "none";
+        startButton.style.display="none";
+    }
+
 }
