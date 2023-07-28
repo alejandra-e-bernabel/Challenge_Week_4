@@ -80,3 +80,15 @@ form {
 .headerRestart {
     cursor: pointer;
 }
+
+.highScoreName {
+    background-color: black;
+    border-color: white;
+    color: white;
+    border-radius: 5px;
+    text-align: center;
+}
+
+::placeholder {
+    color: white;
+}

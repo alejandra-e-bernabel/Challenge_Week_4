@@ -49,12 +49,12 @@
                 <h1>Welcome to the JavaScript Quiz!</h1>
                 <br><br>
                 <h2>Instructions</h2>
-                <p>This quiz will test your JavaScript knowledge and save your high score! When ready, click the "start" button. A timer will begin counting down.
+                <p>This quiz will test your JavaScript knowledge and save your high score! When ready, click the "Begin Quiz" button. A timer will begin counting down.
                     With each correct answer, your score increases. With each incorrect answer, your time will be reduced.
                     If you finish all questions before the time runs out, your remaining time will be added to your score.
                     <br><br>
                     Good luck!
-                    <br><br>
+                
                 </p>
             </div>
 
@@ -62,12 +62,12 @@
                 <h1>Welcome to the JavaScript Quiz!</h1>
                 <br><br>
                 <h2>Instructions</h2>
-                <p>This quiz will test your JavaScript knowledge and save your high score! When ready, click the "start" button. A timer will begin counting down.
+                <p>This quiz will test your JavaScript knowledge and save your high score! When ready, click the "Begin Quiz" button. A timer will begin counting down.
                     With each correct answer, your score increases. With each incorrect answer, your time will be reduced.
                     If you finish all questions before the time runs out, your remaining time will be added to your score.
                     <br><br>
                     Good luck!
-                    <br><br>
+                
                 </p>
             </div>
 
@@ -121,12 +121,32 @@
 
             </form>
 
+            <div id="highScoreCard">
+                <h1>
+                    Congratulations!
+                </h1>
+                <p style="font: bold;">You have achieved a high score! Please enter your leaderboard name (ten characters max)
+                    <input class=highScoreName id=highScoreName type="text" name="text" placeholder= "YOUR NAME HERE" maxlength="10"</P>
+                    <br><br>
+                    <button id= "submitScoreButton" type="button" class="btn btn-outline-light btn-lg">Submit High Score</button>
+                </p>
+
+            </div>
+
+            <div id="leaderboardCard">
+                <h1>Leaderboard</h1>
+                <!-- empty container in which to put the leaderboard once it's created -->
+                <p id="itemizedLeaderboard">Placeholder Leaderboard value</p>
+            </div>
+
             <br><br>
 
             <div class = "buttonContainer">
                 <button id= "startButton" type="button" class="btn btn-outline-light btn-lg">Begin Quiz</button>
                 <button id= "restartButton" type="button" class="btn btn-outline-light btn-lg">Resart Quiz</button>
             </div>
+
+            
            
         </div>
     
