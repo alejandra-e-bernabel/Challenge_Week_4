@@ -3,8 +3,23 @@ var timerEl = document.querySelector(".timer");
 var questionEl = document.getElementById("questionBody");
 var startButton = document.getElementById("startButton");
 
+
+
+//questions being passed in from the HTML
+var question1 = document.getElementById("question1");
+question1.style.display = "none";
+
+var question2 = document.getElementById("question2");
+question2.style.display = "none";
+
+var question3 = document.getElementById("question3");
+question3.style.display = "none";
+
+
+//variables to keep track of quiz progress
 var secondsLeft = 30;
 var questionNum = 0;
+var quizScore = 0;
 
 startButton.addEventListener("click",function buttonPress() {
     questionNum++;
@@ -15,7 +30,7 @@ startButton.addEventListener("click",function buttonPress() {
 function setTime() {
     var timerInterval = setInterval(function() {
         secondsLeft--;
-        timerEl.textContent = secondsLeft + " seconds left!";
+        timerEl.textContent = "Time: " + secondsLeft;
         
         if (secondsLeft == 0) {
             clearInterval(timerInterval);
@@ -31,31 +46,80 @@ function printQuestion (i) {
 
     switch (i) {
         case 1:
+            setTime();
             questionEl.textContent = "Question 1";
+            question1.style.display = "block"; 
             startButton.textContent = "Next question";
+
             break;
 
         case 2:
+         
+        checkQuestion1();
+
+        console.log ("Currect score is " + quizScore);
+
             questionEl.textContent = "Question 2";
+            question1.style.display = "none";
+            question2.style.display = "block";
             break;
 
         case 3: 
+
+        checkQuestion2();
+        console.log ("Currect score is " + quizScore);
+
             questionEl.textContent = "Question 3";
+            question2.style.display = "none";
+            question3.style.display = "block";
             break;
         
         default:
+
+        checkQuestion3();
+        console.log ("Currect score is " + quizScore);
+
             console.log (i);
-            questionEl.textContent = "Something went wrong, please try again."
+            timerEl.style.display="none";
+            questionEl.textContent = "Your final score is " + (quizScore+secondsLeft);
+            question3.style.display = "none";
+            startButton.style.display="none";
             break;
 
     }
 }
 
 
-// function question1 {
 
-// }
+function checkQuestion1 () {
+    if (document.getElementById("Object-Oriented").checked)
+        quizScore += 10;
+    
+    else {
+        secondsLeft-=10;
+        if (secondsLeft <=0)
+            i=100;
+    }
+}
 
-// function question 2 {
+function checkQuestion2 () {
+    if (document.getElementById("BothAandBQ2").checked)
+        quizScore += 10;
+    
+    else {
+        secondsLeft-=10;
+        if (secondsLeft <=0)
+            i=100;
+        }
+}
 
-// }
+function checkQuestion3 () {
+    if (document.getElementById("BothAandBQ3").checked)
+        quizScore += 10;
+    
+    else {
+        secondsLeft-=10;
+        if (secondsLeft <=0)
+            i=100;
+        }
+}
