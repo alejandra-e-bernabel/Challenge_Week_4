@@ -6,11 +6,17 @@ var startButton = document.getElementById("startButton");
 var restartButton = document.getElementById("restartButton");
 
 
+
 //makes the timer invisible before starting the quiz
 timerEl.style.display = "none";
 scoreEl.style.display = "none";
 
+restartButton.style.display = "none";
+
 //questions being passed in from the HTML
+var welcomeCard = document.getElementById("instructionsAndWelcomeCard") 
+welcomeCard.style.display = "none"
+
 var question1 = document.getElementById("question1");
 question1.style.display = "none";
 
@@ -25,6 +31,7 @@ question3.style.display = "none";
 var secondsLeft = 70;
 var questionNum = 0;
 var quizScore = 0;
+var quizEnd = false;
 
 startButton.addEventListener("click",function buttonPress() {
     questionNum++;
@@ -32,10 +39,7 @@ startButton.addEventListener("click",function buttonPress() {
 })
 
 restartButton.addEventListener("click", function buttonPress() {
-    quizScore=0;
-    questionNum=0;
-    //timer resart function
-    timerInterval.stop;
+    resetQuiz();
 })
 
 
@@ -95,6 +99,7 @@ function printQuestion (i) {
     
     switch (i) {
         case 1:
+            welcomeCard.style.display = "none";
             timerEl.style.display = "block";
             scoreEl.style.display = "block";
             setTime();
@@ -102,6 +107,8 @@ function printQuestion (i) {
             questionEl.textContent = "Question 1";
             question1.style.display = "block"; 
             startButton.textContent = "Next question";
+
+            restartButton.style.display = "block";
             break;
 
         case 2:
@@ -135,6 +142,7 @@ function printQuestion (i) {
             scoreEl.style.display="none";
 
             var scoreTime = secondsLeft;
+            quizEnd = true;
             questionEl.textContent = "Your final score is " + (quizScore+scoreTime);
             question3.style.display = "none";
             startButton.style.display="none";
@@ -177,11 +185,11 @@ function checkQuestion3 () {
 
 function timeCheck () {
     //console.log("Time is checked)");
-    if (secondsLeft <= 0) {
+    if (secondsLeft <= 0 && !quizEnd) {
         timerEl.style.display="none";
         scoreEl.style.display="none";
         
-        var scoreTime = secondsLeft;
+        var scoreTime = secondsLeft;qaszx
         questionEl.textContent = "Your final score is " + (quizScore+scoreTime);
         question1.style.display = "none";
         question1.style.display = "none";
@@ -193,5 +201,22 @@ function timeCheck () {
 
 
 function resetQuiz () {
+    quizScore=0;
+    questionNum=0;
     
+    //timer resart function
+    questionEl.textContent = "";
+    question1.style.display = "none";
+    question2.style.display = "none";
+    question3.style.display = "none";
+    welcomeCard.style.display = "block";
+    welcomeCard.style.textAlign = "center";
+
+    timerEl.style.display="none";
+    scoreEl.style.display="none";
+    startButton.style.display = "block";
+
+    restartButton.style.display = "none";
+
+    startButton.textContent = "Begin Quiz";
 }
