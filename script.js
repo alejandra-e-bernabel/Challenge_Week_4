@@ -1,9 +1,14 @@
 var timerEl = document.querySelector(".timer");
+var scoreEl = document.querySelector(".scoreKeeper");
 //timerEl.style.color = "chartreuse";
 var questionEl = document.getElementById("questionBody");
 var startButton = document.getElementById("startButton");
+var restartButton = document.getElementById("restartButton");
 
 
+//makes the timer invisible before starting the quiz
+timerEl.style.display = "none";
+scoreEl.style.display = "none";
 
 //questions being passed in from the HTML
 var question1 = document.getElementById("question1");
@@ -17,7 +22,7 @@ question3.style.display = "none";
 
 
 //variables to keep track of quiz progress
-var secondsLeft = 30;
+var secondsLeft = 70;
 var questionNum = 0;
 var quizScore = 0;
 
@@ -26,33 +31,77 @@ startButton.addEventListener("click",function buttonPress() {
     printQuestion(questionNum);
 })
 
+restartButton.addEventListener("click", function buttonPress() {
+    quizScore=0;
+    questionNum=0;
+    //timer resart function
+    timerInterval.stop;
+})
+
+
+
 //function keeps track of time left in the quiz.
 function setTime() {
     var timerInterval = setInterval(function() {
         secondsLeft--;
-        timerEl.textContent = "Time: " + secondsLeft;
-
+        
         timeCheck();
         
-        if (secondsLeft == 0) {
+        if (secondsLeft <= 0) {
             clearInterval(timerInterval);
         }
+
     
     //the second number here is the delay length between calling this code again
     }, 1000)
 
+    this.stop = function () {
+        if (timerInterval) {
+            timerInterval = null;
+        }
+
+        return this;
+    }
+
+    this.start = function () {
+        if (!timerInterval) {
+            this.stop();
+            timerInterval=setInterval(function() {
+                secondsLeft--;
+                
+                timeCheck();
+                
+                if (secondsLeft <= 0) {
+                    clearInterval(timerInterval);
+                }
+        
+            
+            //the second number here is the delay length between calling this code again
+            }, 1000)
+        }
+        return this;
+    }
+
+}
+
+function printScoreAndTime () {
+    setInterval(function(){
+        timerEl.textContent = "Time: " + secondsLeft;
+        scoreEl.textContent = "Current Score: " + quizScore;
+    }, 100)
 }
 
 function printQuestion (i) {
-    questionEl.textContent = "Question 1";
-
+    
     switch (i) {
         case 1:
+            timerEl.style.display = "block";
+            scoreEl.style.display = "block";
             setTime();
+            printScoreAndTime();
             questionEl.textContent = "Question 1";
             question1.style.display = "block"; 
             startButton.textContent = "Next question";
-
             break;
 
         case 2:
@@ -83,7 +132,10 @@ function printQuestion (i) {
 
             console.log (i);
             timerEl.style.display="none";
-            questionEl.textContent = "Your final score is " + (quizScore+secondsLeft);
+            scoreEl.style.display="none";
+
+            var scoreTime = secondsLeft;
+            questionEl.textContent = "Your final score is " + (quizScore+scoreTime);
             question3.style.display = "none";
             startButton.style.display="none";
             break;
@@ -124,14 +176,22 @@ function checkQuestion3 () {
 }
 
 function timeCheck () {
-    if (secondsLeft == 0) {
+    //console.log("Time is checked)");
+    if (secondsLeft <= 0) {
         timerEl.style.display="none";
+        scoreEl.style.display="none";
         
-        questionEl.textContent = "Your final score is " + (quizScore+secondsLeft);
+        var scoreTime = secondsLeft;
+        questionEl.textContent = "Your final score is " + (quizScore+scoreTime);
         question1.style.display = "none";
         question1.style.display = "none";
         question3.style.display = "none";
         startButton.style.display="none";
     }
 
+}
+
+
+function resetQuiz () {
+    
 }
