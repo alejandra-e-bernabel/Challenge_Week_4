@@ -4,9 +4,17 @@ var scoreEl = document.querySelector(".scoreKeeper");
 var questionEl = document.getElementById("questionBody");
 var startButton = document.getElementById("startButton");
 var restartButton = document.getElementById("restartButton");
+var alertEl = document.getElementById("notification");
+
+
+
 var headerRestart = document.getElementById("headerRestart");
+var headerViewHighScores = document.getElementById("headerViewHighScores");
+var headerResetHighScores = document.getElementById("headerResetHighScores");
+
 var submitScoreButton = document.getElementById("submitScoreButton");
 var itemizedLeaderboard = document.getElementById("itemizedLeaderboard");
+
 
 //headerRestart.style.color = "white";
 
@@ -46,9 +54,11 @@ var timer = new setTime(function() {
     secondsLeft--;
     timeCheck();
     if (secondsLeft <= 0) {
-        clearInterval(timerInterval);
+        timer.stop;
     }
 }, 1000);
+timer.stop();
+
 
 class highScoreObject {
     constructor (name, score) {
@@ -59,18 +69,20 @@ class highScoreObject {
 
 //Array for keeping track of high scores
 var leaderboard = [];
-exampleLeaderboard = new highScoreObject("default", 0);
 
-leaderboard.push(exampleLeaderboard);
+//exampleLeaderboard = new highScoreObject("default", 0);
+//leaderboard.push(exampleLeaderboard);
 
 
 startButton.addEventListener("click",function buttonPress() {
     questionNum++;
     printQuestion(questionNum);
+    
 })
 
 restartButton.addEventListener("click", function buttonPress() {
     resetQuiz();
+    timer.stop();
 });
 
 submitScoreButton.addEventListener("click", function buttonPress(){
@@ -78,13 +90,21 @@ submitScoreButton.addEventListener("click", function buttonPress(){
     saveHighScore(finalScore);
     clearAllCards();
     leaderboardCard.style.display = "block";
-    itemizedLeaderboard.value = printScorestoLeaderboard();
+    itemizedLeaderboard.innerHTML = printScorestoLeaderboard();
 });
 
 
 headerRestart.addEventListener("click",function buttonPress(){
     resetQuiz();
 });
+
+headerViewHighScores.addEventListener("click", function buttonPress() {
+    viewHighScores();
+})
+
+headerResetHighScores.addEventListener("click", function buttonPress() {
+    clearHighScores();
+})
 
 
 //function keeps track of time left in the quiz.
@@ -197,37 +217,52 @@ function printQuestion (i) {
 
 
 function checkQuestion1 () {
-    if (document.getElementById("Object-Oriented").checked)
+    if (document.getElementById("Object-Oriented").checked) {
         quizScore += 10;
+        alertEl.innerHTML = "Correct!";
+        showAlert();
+    }
     
     else {
         secondsLeft-=10;
-        
+        alertEl.innerHTML = "Incorrect.";
+        showAlert();
     }
 }
 
 function checkQuestion2 () {
-    if (document.getElementById("BothAandBQ2").checked)
+    if (document.getElementById("BothAandBQ2").checked) {
         quizScore += 10;
+        alertEl.innerHTML = "Correct!";
+        showAlert();
+    }
+        
     
     else {
         secondsLeft-=10;
-        
+        alertEl.innerHTML = "Incorrect.";
+        showAlert();
         }
 }
 
 function checkQuestion3 () {
-    if (document.getElementById("BothAandBQ3").checked)
+    if (document.getElementById("BothAandBQ3").checked) {
+        alertEl.innerHTML = "Correct!";
+        showAlert();
         quizScore += 10;
+    }
     
     else {
         secondsLeft-=10;
-        
+        alertEl.innerHTML = "Incorrect.";
+        showAlert();
         }
 }
 
 function timeCheck () {
     //console.log("Time is checked)");
+    //console.log(secondsLeft);
+
     if (secondsLeft <= 0 && !quizEnd) {
         timerEl.style.display="none";
         scoreEl.style.display="none";
@@ -259,7 +294,7 @@ function resetQuiz () {
     totalScore = 0;
     
     //timer resart function
-    timer.reset();
+    timer.stop();
 
     clearAllCards();
     welcomeCard.style.display = "block";
@@ -278,6 +313,7 @@ function resetQuiz () {
 function createFinalScore() {
     
     var name = document.querySelector("#highScoreName").value;
+    name = name.toUpperCase();
     //console.log ("Entered createFinalScore with "+ name + "and" + totalScore);
 
     var highScore = new highScoreObject(name, totalScore);
@@ -295,18 +331,17 @@ function saveHighScore (currentScore) {
         //sort array from highest to lowest function
         console.log("Array will be sorted");
         leaderboard.sort((a, b) => b.score - a.score);
+        printArr();
     }
 
-    else if (currentScore.score>leaderboard[4]) {
+    else {
         leaderboard.pop();
         leaderboard.push(currentScore);
         //sort array from highest to lowest function
-        console.log("Array will be sorted");
-        scoreObjects.sort((a, b) => b.score - a.score);
+        console.log("Since score is higher than lowerst high score, it will be added");
+        leaderboard.sort((a, b) => b.score - a.score);
+        printArr();
     }
-
-    else 
-        console.log("Your score is too low and will not be saved to the leaderboard.");
 
 }
 
@@ -314,10 +349,14 @@ function checkHighScore (currentScore) {
 
     i = leaderboard.length;
 
-    console.log ("checkHighScore received score " + currentScore);
-    console.log ("The current lowest high score is" + leaderboard[i-1].score);
+    //console.log ("checkHighScore received score " + currentScore);
+    //console.log ("The current lowest high score is" + leaderboard[i-1].score);
 
-    if (currentScore>leaderboard[i-1].score) { //if the current score is greater than the last element of the array
+    if (leaderboard.length == 0) {
+        return true;
+    }
+
+    else if (currentScore>=leaderboard[i-1].score) { //if the current score is greater than the last element of the array
         console.log ("checkHighScore returned true");
         return true;
         
@@ -345,25 +384,73 @@ function printArr () {
 }
 
 function clearAllCards () {
+    welcomeCard.style.display = "none";
+    
     questionEl.textContent = "";
     question1.style.display = "none";
     question2.style.display = "none";
     question3.style.display = "none";
-    //startButton.style.display="none";
+    
     congratulationsCard.style.display="none";
     leaderboardCard.style.display = "none";
 }
 
 function printScorestoLeaderboard () {
     var scoreString;
-
+    console.log ("Entered print leaderboard function");
+    var j;
     //this needs to be fixed;
-    for (var j=0; j<leaderboard.length; j++) {
+    for (j=0; j<leaderboard.length; j++) {
         
-        scoreString = scoreString.concat(j+1 + ". " + leaderboard[j].name + ".......... " + leaderboard[j].score + "points\n\n");
+        if(j==0) {
+            scoreString = (j+1) + ". " + leaderboard[j].name + ".......... " + leaderboard[j].score + " points" + "<br>"; 
+            //console.log (scoreString);
+        }
+        
+        else {
+        //console.log ("loop is on round" + j);
+        scoreString = scoreString+ (j+1) + ". " + leaderboard[j].name + ".......... " + leaderboard[j].score + " points"+ "<br>";
+        
+        }
         console.log (scoreString);
     }
 
     return scoreString;
 
+}
+
+function viewHighScores () {
+    clearAllCards();
+
+    
+    startButton.style.display = "none";
+    scoreEl.style.display = "none";
+    timerEl.style.display = "none";
+
+    timer.stop();
+
+
+
+    leaderboardCard.style.display="block";
+    if (leaderboard.length==0) {
+        itemizedLeaderboard.innerHTML = "No scores have been saved yet. Return here after attempting the quiz to view top 5 scores!"
+    }
+
+    else {
+        itemizedLeaderboard.innerHTML = printScorestoLeaderboard();
+    }
+
+}
+
+function clearHighScores () {
+    leaderboard.length = 0;
+    viewHighScores();
+    alertEl.innerHTML = "High Scores have been cleared."
+    showAlert();
+}
+
+function showAlert() {
+    setTimeout(function(){
+        alertEl.innerHTML = " ";
+    },2000)
 }

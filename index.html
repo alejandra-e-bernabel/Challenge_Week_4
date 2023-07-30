@@ -23,15 +23,15 @@
     
             <nav>
                 <ul>
-                    <li class="headerRestart" id="headerRestart">
+                    <li class="headerButton" id="headerRestart">
                         Restart Quiz
                     </li>
     
-                    <li>
+                    <li class="headerButton" id="headerViewHighScores">
                         View High Scores
                     </li>
     
-                    <li>
+                    <li class = "headerButton" id = "headerResetHighScores" >
                         Clear High Scores
                     </li>
                 </ul>
@@ -125,8 +125,8 @@
                 <h1>
                     Congratulations!
                 </h1>
-                <p style="font: bold;">You have achieved a high score! Please enter your leaderboard name (ten characters max)
-                    <input class=highScoreName id=highScoreName type="text" name="text" placeholder= "YOUR NAME HERE" maxlength="10"</P>
+                <p style="font: bold;">You have achieved a high score! Please enter your leaderboard name (3 characters max)
+                    <input class=highScoreName id=highScoreName type="text" name="text" placeholder= "YOUR NAME HERE" maxlength="3"</P>
                     <br><br>
                     <button id= "submitScoreButton" type="button" class="btn btn-outline-light btn-lg">Submit High Score</button>
                 </p>
@@ -146,9 +146,11 @@
                 <button id= "restartButton" type="button" class="btn btn-outline-light btn-lg">Resart Quiz</button>
             </div>
 
-            
+            <br>
+            <p class= notification id="notification"></p>
            
         </div>
+
     
     
         <script src="./script.js"></script>
