@@ -197,7 +197,8 @@ function printQuestion (i) {
 
             var scoreTime = secondsLeft;
             totalScore = quizScore+scoreTime;
-            questionEl.textContent = "Your final score is " + (totalScore);            question3.style.display = "none";
+            questionEl.innerHTML = "Your final score is " + (totalScore) + "<br>" + "You did not achieve a high score. Please try again!";            
+            question3.style.display = "none";
             startButton.style.display="none";
             timer.stop();
 
@@ -281,6 +282,10 @@ function timeCheck () {
             showCongratulationsCard();
             // finalScore = createFinalScore();
             // saveHighScore(finalScore);
+        }
+
+        else {
+            viewHighScores();
         }
         
     }
@@ -370,14 +375,14 @@ function checkHighScore (currentScore) {
     }
 
     else if (currentScore>=leaderboard[i-1].score) { //if the current score is greater than the last element of the array
-        console.log ("checkHighScore returned true");
+        //console.log ("checkHighScore returned true");
         return true;
         
     }
 
     else {
-        console.log ("The score was not high enough to record. Score=" + currentScore);
-        console.log ("checkHighScore returned true");
+        //console.log ("The score was not high enough to record. Score=" + currentScore);
+        //console.log ("checkHighScore returned true");
         return false;
     }
 
@@ -465,5 +470,5 @@ function clearHighScores () {
 function showAlert() {
     setTimeout(function(){
         alertEl.innerHTML = " ";
-    },2000)
+    },1000)
 }
