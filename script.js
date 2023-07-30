@@ -289,6 +289,19 @@ function timeCheck () {
 
 
 function resetQuiz () {
+
+   
+
+    var elements = document.getElementsByTagName("input");
+
+        for (var i = 0; i < elements.length; i++) {
+            if (elements[i].type == "radio") {
+                elements[i].checked = false;
+            }
+            else 
+                elements[i].value = "";
+        }
+    
     quizScore=0;
     questionNum=0;
     totalScore = 0;
