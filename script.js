@@ -37,6 +37,34 @@ question2.style.display = "none";
 var question3 = document.getElementById("question3");
 question3.style.display = "none";
 
+var question4 = document.getElementById("question4");
+question4.style.display = "none";
+
+var question5 = document.getElementById("question5");
+question5.style.display = "none";
+
+var question6 = document.getElementById("question6");
+question6.style.display = "none";
+
+var question7 = document.getElementById("question7");
+question7.style.display = "none";
+
+var question8 = document.getElementById("question8");
+question8.style.display = "none";
+
+var question9 = document.getElementById("question9");
+question9.style.display = "none";
+
+var question10 = document.getElementById("question10");
+question10.style.display = "none";
+
+var question11 = document.getElementById("question11");
+question11.style.display = "none";
+
+var question12 = document.getElementById("question12");
+question12.style.display = "none";
+
+
 var congratulationsCard = document.getElementById("highScoreCard");
 congratulationsCard.style.display = "none";
 
@@ -165,9 +193,7 @@ function printQuestion (i) {
 
         case 2:
          
-        checkQuestion1();
-
-        console.log ("Currect score is " + quizScore);
+            checkQuestion1();
 
             clearAllCards();
             questionEl.textContent = "Question 2";
@@ -176,17 +202,99 @@ function printQuestion (i) {
 
         case 3: 
 
-        checkQuestion2();
-        console.log ("Currect score is " + quizScore);
+            checkQuestion2();
 
             questionEl.textContent = "Question 3";
             question2.style.display = "none";
             question3.style.display = "block";
             break;
         
+        case 4:
+
+            checkQuestion3();
+
+            questionEl.textContent = "Question 4";
+            question3.style.display = "none";
+            question4.style.display = "block";
+            break;
+        
+
+        case 5:
+
+            checkQuestion4();
+
+            questionEl.textContent = "Question 5";
+            question4.style.display = "none";
+            question5.style.display = "block";
+            break;
+
+        case 6:
+
+            checkQuestion5();
+
+            questionEl.textContent = "Question 6";
+            question5.style.display = "none";
+            question6.style.display = "block";
+            break;
+
+        case 7:
+
+            checkQuestion6();
+
+            questionEl.textContent = "Question 7";
+            question6.style.display = "none";
+            question7.style.display = "block";
+            break;
+
+        case 8:
+
+            checkQuestion7();
+
+            questionEl.textContent = "Question 8";
+            question7.style.display = "none";
+            question8.style.display = "block";
+            break;
+
+        case 9:
+
+            checkQuestion8();
+
+            questionEl.textContent = "Question 9";
+            question8.style.display = "none";
+            question9.style.display = "block";
+            break;
+
+        case 10:
+
+            checkQuestion9();
+
+            questionEl.textContent = "Question 10";
+            question9.style.display = "none";
+            question10.style.display = "block";
+            break;
+
+        case 11:
+
+            checkQuestion10();
+
+            questionEl.textContent = "Question 11";
+            question10.style.display = "none";
+            question11.style.display = "block";
+            break;
+
+        case 12:
+
+            checkQuestion11();
+
+            questionEl.textContent = "Question 12";
+            question11.style.display = "none";
+            question12.style.display = "block";
+            break;
+
+
         default:
 
-        checkQuestion3();
+        checkQuestion12();
         console.log ("Currect score is " + quizScore);
 
             console.log (i);
@@ -259,6 +367,142 @@ function checkQuestion3 () {
         showAlert();
         }
 }
+
+
+function checkQuestion4 () {
+    if (document.getElementById("Ignores the statements").checked) {
+        alertEl.innerHTML = "Correct!";
+        showAlert();
+        quizScore += 10;
+    }
+    
+    else {
+        secondsLeft-=10;
+        alertEl.innerHTML = "Incorrect.";
+        showAlert();
+        }
+}
+
+
+function checkQuestion5 () {
+    if (document.getElementById("AlloftheaboveQ5").checked) {
+        alertEl.innerHTML = "Correct!";
+        showAlert();
+        quizScore += 10;
+    }
+    
+    else {
+        secondsLeft-=10;
+        alertEl.innerHTML = "Incorrect.";
+        showAlert();
+        }
+}
+
+function checkQuestion6 () {
+    if (document.getElementById("const").checked) {
+        alertEl.innerHTML = "Correct!";
+        showAlert();
+        quizScore += 10;
+    }
+    
+    else {
+        secondsLeft-=10;
+        alertEl.innerHTML = "Incorrect.";
+        showAlert();
+        }
+}
+
+function checkQuestion7 () {
+    if (document.getElementById("59").checked) {
+        alertEl.innerHTML = "Correct!";
+        showAlert();
+        quizScore += 10;
+    }
+    
+    else {
+        secondsLeft-=10;
+        alertEl.innerHTML = "Incorrect.";
+        showAlert();
+        }
+}
+
+function checkQuestion8 () {
+    if (document.getElementById("al").checked) {
+        alertEl.innerHTML = "Correct!";
+        showAlert();
+        quizScore += 10;
+    }
+    
+    else {
+        secondsLeft-=10;
+        alertEl.innerHTML = "Incorrect.";
+        showAlert();
+        }
+}
+
+function checkQuestion9 () {
+    if (document.getElementById("20").checked) {
+        alertEl.innerHTML = "Correct!";
+        showAlert();
+        quizScore += 10;
+    }
+    
+    else {
+        secondsLeft-=10;
+        alertEl.innerHTML = "Incorrect.";
+        showAlert();
+        }
+}
+
+function checkQuestion10 () {
+    if (document.getElementById("BothDataTypeandResult").checked) {
+        alertEl.innerHTML = "Correct!";
+        showAlert();
+        quizScore += 10;
+    }
+    
+    else {
+        secondsLeft-=10;
+        alertEl.innerHTML = "Incorrect.";
+        showAlert();
+        }
+}
+
+
+function checkQuestion11 () {
+    if (document.getElementById("in").checked) {
+        alertEl.innerHTML = "Correct!";
+        showAlert();
+        quizScore += 10;
+    }
+    
+    else {
+        secondsLeft-=10;
+        alertEl.innerHTML = "Incorrect.";
+        showAlert();
+        }
+}
+
+
+function checkQuestion12 () {
+    if (document.getElementById("contentsAreDisplayed").checked) {
+        alertEl.innerHTML = "Correct!";
+        showAlert();
+        quizScore += 10;
+    }
+    
+    else {
+        secondsLeft-=10;
+        alertEl.innerHTML = "Incorrect.";
+        showAlert();
+        }
+}
+
+
+
+
+
+
 
 function timeCheck () {
     //console.log("Time is checked)");
@@ -408,6 +652,15 @@ function clearAllCards () {
     question1.style.display = "none";
     question2.style.display = "none";
     question3.style.display = "none";
+    question4.style.display = "none";
+    question5.style.display = "none";
+    question6.style.display = "none";
+    question7.style.display = "none";
+    question8.style.display = "none";
+    question9.style.display = "none";
+    question10.style.display = "none";
+    question11.style.display = "none";
+    question12.style.display = "none";
     
     congratulationsCard.style.display="none";
     leaderboardCard.style.display = "none";
