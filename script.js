@@ -311,8 +311,10 @@ function printQuestion (i) {
                 var scoreTime = 0;
 
             totalScore = quizScore+scoreTime;
+            
+            clearAllCards();
+            
             questionEl.innerHTML = "Your final score is " + (totalScore) + "<br>" + "You did not achieve a high score. Please try again!";            
-            question12.style.display = "none";
             startButton.style.display="none";
             timer.stop();
 
@@ -528,10 +530,9 @@ function timeCheck () {
             var scoreTime = 0;
 
         totalScore = quizScore+scoreTime;
+        clearAllCards();
+
         questionEl.textContent = "Your final score is " + (totalScore);
-        question1.style.display = "none";
-        question1.style.display = "none";
-        question3.style.display = "none";
         startButton.style.display="none";
 
         if (checkHighScore(totalScore)) {
@@ -541,9 +542,9 @@ function timeCheck () {
             // saveHighScore(finalScore);
         }
 
-        else {
-            viewHighScores();
-        }
+        // else {
+        //     viewHighScores();
+        // }
         
     }
 
