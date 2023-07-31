@@ -73,7 +73,7 @@ leaderboardCard.style.display = "none";
 
 
 //variables to keep track of quiz progress
-var secondsLeft = 70;
+var secondsLeft = 120;
 var questionNum = 0;
 var quizScore = 0;
 var totalScore = 0;
@@ -158,7 +158,7 @@ function setTime(fn, t) {
 
     this.reset = function(newT = t) {
         t = newT;
-        secondsLeft = 70;
+        secondsLeft = 120;
         return this.stop().start();
     }
 
@@ -303,10 +303,16 @@ function printQuestion (i) {
 
             quizEnd = true;
 
-            var scoreTime = secondsLeft;
+            if (secondsLeft>=0)
+                var scoreTime = secondsLeft;
+            
+
+            else 
+                var scoreTime = 0;
+
             totalScore = quizScore+scoreTime;
             questionEl.innerHTML = "Your final score is " + (totalScore) + "<br>" + "You did not achieve a high score. Please try again!";            
-            question3.style.display = "none";
+            question12.style.display = "none";
             startButton.style.display="none";
             timer.stop();
 
@@ -513,7 +519,14 @@ function timeCheck () {
         scoreEl.style.display="none";
         
         quizEnd = true;
-        var scoreTime = secondsLeft;
+
+        
+        if (secondsLeft>=0)
+            var scoreTime = secondsLeft;
+    
+        else 
+            var scoreTime = 0;
+
         totalScore = quizScore+scoreTime;
         questionEl.textContent = "Your final score is " + (totalScore);
         question1.style.display = "none";
@@ -614,19 +627,25 @@ function checkHighScore (currentScore) {
     //console.log ("checkHighScore received score " + currentScore);
     //console.log ("The current lowest high score is" + leaderboard[i-1].score);
 
-    if (leaderboard.length == 0) {
+    
+    if (currentScore<=0) {
+        return false;
+    }
+
+    else if (leaderboard.length <=5) {
         return true;
     }
 
+
     else if (currentScore>=leaderboard[i-1].score) { //if the current score is greater than the last element of the array
-        //console.log ("checkHighScore returned true");
+        console.log ("checkHighScore returned true");
         return true;
         
     }
 
     else {
-        //console.log ("The score was not high enough to record. Score=" + currentScore);
-        //console.log ("checkHighScore returned true");
+        console.log ("The score was not high enough to record. Score=" + currentScore);
+        console.log ("checkHighScore returned false");
         return false;
     }
 
