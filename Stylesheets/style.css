@@ -101,3 +101,13 @@ form {
 ::placeholder {
     color: white;
 }
+
+.sampleCode {
+    background-color:rgba(95, 224, 172, 0.606);
+    color:white;
+    border-radius: 5px;
+    margin: 10px;
+    padding-left: 40px;
+    
+
+}
