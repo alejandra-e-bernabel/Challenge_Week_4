@@ -26,6 +26,7 @@ body {
 .header ul {
     list-style: none;
     display:flex;
+    flex-wrap: wrap;
 }
 
 .header ul li {
@@ -109,5 +110,4 @@ form {
     margin: 10px;
     padding-left: 40px;
     
-
 }

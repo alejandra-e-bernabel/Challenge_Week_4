@@ -1,4 +1,4 @@
-# Challenge_Week_4
+# Coding_Quiz
 A timed quiz on JavaScript fundamentals that stores the top 5 high scores.
 
 # Deployed gitHub link
